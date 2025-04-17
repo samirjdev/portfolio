@@ -47,9 +47,11 @@ export function TypingEffect({ text, className, delay = 0, onComplete, showCurso
   }, []) // Empty dependency array to run only once
 
   return (
-    <span className={cn("inline-block", className)}>
+    <span className={cn("inline-flex items-center", className)}>
       {displayedText}
-      {showCursor && isTyping && <span className="w-2 h-5 bg-blue-500 animate-blink inline-block ml-1" />}
+      {showCursor && isTyping && (
+        <span className="w-2 h-4 bg-blue-500 animate-blink" />
+      )}
     </span>
   )
 } 

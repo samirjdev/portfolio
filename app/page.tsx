@@ -43,11 +43,10 @@ export default function Home() {
 
     startNextCommand()
 
-    // Cleanup function to prevent any lingering timeouts
     return () => {
-      currentIndex = sequence.length // This will prevent any further commands from starting
+      currentIndex = sequence.length
     }
-  }, []) // Empty dependency array ensures this only runs once on mount
+  }, [])
 
   const handleCommandComplete = (command: string) => {
     setTimeout(() => {
@@ -61,16 +60,22 @@ export default function Home() {
   return (
     <TerminalLayout>
       <div className="space-y-4 font-mono">
+        {!Object.values(commands).some(cmd => cmd.showCommand) && (
+          <TerminalPrompt isActive={true} />
+        )}
+
         {commands.whoami.showCommand && (
           <>
             <TerminalPrompt 
-              key="whoami"
               command="whoami" 
               onComplete={() => handleCommandComplete('whoami')}
               isActive={commands.whoami.isActive}
             />
             {commands.whoami.showDescription && (
-              <p className="text-white">Samir Jihadi - Cybersecurity professional and enthusiast full stack developer</p>
+              <>
+                <p className="text-white">Samir Jihadi | Student •  Defensive Security • Full-Stack Development</p>
+                {!commands.about.showCommand && <TerminalPrompt isActive={true} />}
+              </>
             )}
           </>
         )}
@@ -78,18 +83,21 @@ export default function Home() {
         {commands.about.showCommand && (
           <>
             <TerminalPrompt 
-              key="about"
               command="cat about.txt" 
               onComplete={() => handleCommandComplete('about')}
               isActive={commands.about.isActive}
             />
             {commands.about.showDescription && (
-              <p className="text-white">
-                Hello! I'm a cybersecurity professional and full stack developer based in Tampa, FL. 
-                I'm passionate about exploring the intersection of security and cutting-edge technologies like AI, Machine Learning, and Computer Vision. 
-                I frequently participate in hackathons and cybersecurity competitions, where I love solving complex puzzles and challenges. 
-                My goal is to create innovative projects that help people and make a positive impact in the tech community.
-              </p>
+              <>
+                <p className="text-white">
+                  Hello, I'm a cybersecurity professional and hobbyist software dev based in Tampa, attending the University of South Florida.
+                  I am passionate about the role of blue teaming and exploring the intersection of security and
+                  cutting-edge tech like AI. I like to frequently participate in hackathons and security competitions, where I
+                  sharpen my skills in fun, high‑pressure environments while creating work I'm proud of. I'm committed to
+                  innovating secure solutions that empower users or strengthen defenses.
+                </p>
+                {!commands.skills.showCommand && <TerminalPrompt isActive={true} />}
+              </>
             )}
           </>
         )}
@@ -97,18 +105,20 @@ export default function Home() {
         {commands.skills.showCommand && (
           <>
             <TerminalPrompt 
-              key="skills"
               command="ls skills/" 
               onComplete={() => handleCommandComplete('skills')}
               isActive={commands.skills.isActive}
             />
             {commands.skills.showDescription && (
-              <div className="text-white grid grid-cols-2 gap-2">
-                <p>• Defensive Cybersecurity</p>
-                <p>• Software Development</p>
-                <p>• Project Management</p>
-                <p>• Problem Solving</p>
-              </div>
+              <>
+                <div className="text-white grid grid-cols-2 gap-2">
+                  <p>• Defensive Cybersecurity</p>
+                  <p>• Incident Response</p>
+                  <p>• Security Automation</p>
+                  <p>• Problem Solving</p>
+                </div>
+                {!commands.contact.showCommand && <TerminalPrompt isActive={true} />}
+              </>
             )}
           </>
         )}
@@ -116,15 +126,17 @@ export default function Home() {
         {commands.contact.showCommand && (
           <>
             <TerminalPrompt 
-              key="contact"
               command="cat contact.txt" 
               onComplete={() => handleCommandComplete('contact')}
               isActive={commands.contact.isActive}
             />
             {commands.contact.showDescription && (
-              <p className="text-white">
-                Feel free to reach out! I'm always open to new opportunities and collaborations.
-              </p>
+              <>
+                <p className="text-white">
+                  I'm always open to new opportunities. Email me at <a href="mailto:contact@samirj.dev" className="text-green-500 hover:underline">contact@samirj.dev</a> or find me on <a href="https://github.com/samirjdev" className="text-green-500 hover:underline">GitHub</a> & <a href="https://linkedin.com/in/samirjihadi" className="text-green-500 hover:underline">LinkedIn</a>.
+                </p>
+                <TerminalPrompt isActive={true} />
+              </>
             )}
           </>
         )}
