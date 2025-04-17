@@ -90,10 +90,10 @@ export default function Home() {
             {commands.about.showDescription && (
               <>
                 <p className="text-white">
-                  Hello, I'm a cybersecurity professional and hobbyist software dev based in Tampa, attending the University of South Florida.
+                  Hello, I&apos;m a cybersecurity professional and hobbyist software dev based in Tampa, attending the University of South Florida.
                   I am passionate about the role of blue teaming and exploring the intersection of security and
                   cutting-edge tech like AI. I like to frequently participate in hackathons and security competitions, where I
-                  sharpen my skills in fun, high‑pressure environments while creating work I'm proud of. I'm committed to
+                  sharpen my skills in fun, high‑pressure environments while creating work I&apos;m proud of. I&apos;m committed to
                   innovating secure solutions that empower users or strengthen defenses.
                 </p>
                 {!commands.skills.showCommand && <TerminalPrompt isActive={true} />}
@@ -133,7 +133,7 @@ export default function Home() {
             {commands.contact.showDescription && (
               <>
                 <p className="text-white">
-                  I'm always open to new opportunities. Email me at <a href="mailto:contact@samirj.dev" className="text-green-500 hover:underline">contact@samirj.dev</a> or find me on <a href="https://github.com/samirjdev" className="text-green-500 hover:underline">GitHub</a> & <a href="https://linkedin.com/in/samirjihadi" className="text-green-500 hover:underline">LinkedIn</a>.
+                  I&apos;m always open to new opportunities. Email me at <a href="mailto:contact@samirj.dev" className="text-green-500 hover:underline">contact@samirj.dev</a> or find me on <a href="https://github.com/samirjdev" className="text-green-500 hover:underline">GitHub</a> & <a href="https://linkedin.com/in/samirjihadi" className="text-green-500 hover:underline">LinkedIn</a>.
                 </p>
                 <TerminalPrompt isActive={true} />
               </>

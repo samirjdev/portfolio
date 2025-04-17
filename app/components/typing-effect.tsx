@@ -44,7 +44,7 @@ export function TypingEffect({ text, className, delay = 0, onComplete, showCurso
         clearInterval(intervalRef.current)
       }
     }
-  }, []) // Empty dependency array to run only once
+  }, [text, delay, onComplete]) // Added missing dependencies
 
   return (
     <span className={cn("inline-flex items-center", className)}>
