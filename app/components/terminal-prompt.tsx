@@ -13,7 +13,7 @@ interface TerminalPromptProps {
 export function TerminalPrompt({ className, command, onComplete, isActive = true }: TerminalPromptProps) {
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <span className="text-green-500">samir@usf:~$</span>
+      <span className="text-blue-500">samir@usf:~$</span>
       {command && (
         <TypingEffect
           text={command}

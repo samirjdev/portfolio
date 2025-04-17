@@ -42,7 +42,12 @@ export default function Home() {
     }
 
     startNextCommand()
-  }, [])
+
+    // Cleanup function to prevent any lingering timeouts
+    return () => {
+      currentIndex = sequence.length // This will prevent any further commands from starting
+    }
+  }, []) // Empty dependency array ensures this only runs once on mount
 
   const handleCommandComplete = (command: string) => {
     setTimeout(() => {
@@ -65,7 +70,7 @@ export default function Home() {
               isActive={commands.whoami.isActive}
             />
             {commands.whoami.showDescription && (
-              <p className="text-white">Samir - Cybersecurity Enthusiast & Developer</p>
+              <p className="text-white">Samir Jihadi - Cybersecurity professional and enthusiast full stack developer</p>
             )}
           </>
         )}
@@ -80,8 +85,10 @@ export default function Home() {
             />
             {commands.about.showDescription && (
               <p className="text-white">
-                Hello! I'm a student at the University of South Florida with a passion for defensive cybersecurity and software development. 
-                I love creating innovative projects and exploring the intersection of security and technology.
+                Hello! I'm a cybersecurity professional and full stack developer based in Tampa, FL. 
+                I'm passionate about exploring the intersection of security and cutting-edge technologies like AI, Machine Learning, and Computer Vision. 
+                I frequently participate in hackathons and cybersecurity competitions, where I love solving complex puzzles and challenges. 
+                My goal is to create innovative projects that help people and make a positive impact in the tech community.
               </p>
             )}
           </>
