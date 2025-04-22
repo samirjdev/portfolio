@@ -124,7 +124,7 @@ export default function ProjectsPage() {
               <>
                 <p className="text-white">
                   Welcome to my projects page! Here you can find a collection of my work.
-                  Each project showcases different skills and technologies I've worked with.
+                  Each project showcases different skills and technologies I&apos;ve worked with.
                   Feel free to explore and learn more about each project.
                 </p>
                 <TerminalPrompt isActive={true} />
