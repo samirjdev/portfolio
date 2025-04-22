@@ -2,14 +2,21 @@
 
 import { cn } from "@/lib/utils"
 import { useState } from "react"
-import { FileText, RotateCw } from "lucide-react"
+import { FileText, FolderGit2 } from "lucide-react"
 
 interface TerminalLayoutProps {
   children: React.ReactNode
   className?: string
+  rightButtonTooltip?: string
+  rightButtonHref?: string
 }
 
-export function TerminalLayout({ children, className }: TerminalLayoutProps) {
+export function TerminalLayout({ 
+  children, 
+  className,
+  rightButtonTooltip = "Projects",
+  rightButtonHref = "/projects"
+}: TerminalLayoutProps) {
   const [isClosing, setIsClosing] = useState(false)
 
   const handleClose = () => {
@@ -52,23 +59,29 @@ export function TerminalLayout({ children, className }: TerminalLayoutProps) {
           />
           <div className="text-sm ml-2 text-blue-500">terminal</div>
         </div>
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto mb-12 pr-2">
           {children}
         </div>
-        <div className="absolute bottom-4 left-4">
+        <div className="absolute bottom-4 left-4 z-10">
           <button
             onClick={() => window.location.href = '/resume.pdf'}
-            className="p-2 text-green-500 hover:bg-green-500/10 rounded-lg transition-colors"
+            className="p-2 text-green-500 hover:bg-green-500/10 rounded-lg transition-colors group relative"
           >
             <FileText className="w-5 h-5" />
+            <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-1.5 py-0.5 bg-black border border-green-500 text-green-500 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap max-w-[60px]">
+              Resume
+            </span>
           </button>
         </div>
-        <div className="absolute bottom-4 right-4">
+        <div className="absolute bottom-4 right-4 z-10">
           <button
-            onClick={() => window.location.reload()}
-            className="p-2 text-blue-500 hover:bg-blue-500/10 rounded-lg transition-colors"
+            onClick={() => window.location.href = rightButtonHref}
+            className="p-2 text-green-500 hover:bg-green-500/10 rounded-lg transition-colors group relative"
           >
-            <RotateCw className="w-5 h-5" />
+            <FolderGit2 className="w-5 h-5" />
+            <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-1.5 py-0.5 bg-black border border-green-500 text-green-500 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap max-w-[60px]">
+              {rightButtonTooltip}
+            </span>
           </button>
         </div>
       </div>
